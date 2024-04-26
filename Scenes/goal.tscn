@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://jpx7nbycia31"]
+
+[ext_resource type="Script" path="res://Scripts/goal.gd" id="1_ctt46"]
+[ext_resource type="Texture2D" uid="uid://biyjj8mfgr684" path="res://Art/stage/portal1.png" id="1_qn2mi"]
+[ext_resource type="Texture2D" uid="uid://d1ba43lx7qia1" path="res://Art/stage/portal2.png" id="2_bvppd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fj0ut"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qn2mi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bvppd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72hbg"]
+
+[node name="Goal" type="Area2D"]
+scale = Vector2(0.240001, 0.520001)
+script = ExtResource("1_ctt46")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.419125, 0.425404)
+sprite_frames = SubResource("SpriteFrames_fj0ut")
+frame_progress = 0.0750271
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(6.79273, -6.96)
+shape = SubResource("RectangleShape2D_72hbg")
+
+[node name="Finish" type="Label" parent="."]
+visible = false
+offset_left = -587.497
+offset_top = -146.154
+offset_right = -269.497
+offset_bottom = -108.154
+scale = Vector2(3.83332, 2)
+theme_override_font_sizes/font_size = 25
+text = "Game Complete (For Now)"
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

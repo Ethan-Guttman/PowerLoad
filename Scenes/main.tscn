@@ -1,0 +1,138 @@
+[gd_scene load_steps=8 format=3 uid="uid://mjvd6rcalock"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_nq2fy"]
+[ext_resource type="PackedScene" uid="uid://mdhmi5y3baol" path="res://Scenes/platform.tscn" id="1_tblbi"]
+[ext_resource type="PackedScene" uid="uid://be6n8rraqx27t" path="res://Scenes/player.tscn" id="1_uy87l"]
+[ext_resource type="PackedScene" uid="uid://cckion20g7h8k" path="res://Scenes/eleplatform.tscn" id="3_ss2b3"]
+[ext_resource type="PackedScene" uid="uid://bsrgd4kxpym8m" path="res://Scenes/hud.tscn" id="5_22i18"]
+[ext_resource type="PackedScene" uid="uid://crmd46tu7484w" path="res://Scenes/fireball.tscn" id="5_yeo6c"]
+[ext_resource type="PackedScene" uid="uid://jpx7nbycia31" path="res://Scenes/goal.tscn" id="8_4m76e"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_nq2fy")
+fireball_scene = ExtResource("5_yeo6c")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1105.0
+offset_top = -895.0
+offset_right = -1105.0
+offset_bottom = -895.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(58.815, 18.0947)
+color = Color(0.0784314, 0.0392157, 0, 1)
+
+[node name="Platform2" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(522, 2028)
+
+[node name="Platform3" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(285, 2139)
+
+[node name="Platform" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(126, 1908)
+
+[node name="eleplatform" parent="." instance=ExtResource("3_ss2b3")]
+position = Vector2(740, 2161)
+scale = Vector2(1.5, 1.5)
+
+[node name="Platform4" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(142, 2282)
+
+[node name="Platform5" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(441, 2282)
+
+[node name="Platform6" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(741, 2282)
+
+[node name="Platform7" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(1039, 2282)
+
+[node name="ElementIntervalTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="GravityTimer" type="Timer" parent="."]
+
+[node name="Goal" parent="." instance=ExtResource("8_4m76e")]
+position = Vector2(1161, 788)
+
+[node name="wall" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(-11, 336)
+scale = Vector2(0.1, 520)
+
+[node name="wall2" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(1197, 321)
+scale = Vector2(0.1, 520)
+
+[node name="eleplatform2" parent="." instance=ExtResource("3_ss2b3")]
+position = Vector2(958, 1737)
+scale = Vector2(1.5, 1.5)
+
+[node name="eleplatform3" parent="." instance=ExtResource("3_ss2b3")]
+position = Vector2(529, 1829)
+scale = Vector2(1.5, 1.5)
+
+[node name="Platform8" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(542, 1604)
+
+[node name="eleplatform4" parent="." instance=ExtResource("3_ss2b3")]
+position = Vector2(939, 1464)
+scale = Vector2(1.5, 1.5)
+
+[node name="eleplatform5" parent="." instance=ExtResource("3_ss2b3")]
+position = Vector2(185, 1487)
+scale = Vector2(1.5, 1.5)
+
+[node name="Platform9" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(1167, 1351)
+
+[node name="Platform10" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(809, 1256)
+
+[node name="Platform11" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(1200, 1214)
+
+[node name="Platform12" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(59, 1378)
+
+[node name="eleplatform6" parent="." instance=ExtResource("3_ss2b3")]
+position = Vector2(424, 1266)
+scale = Vector2(1.5, 1.5)
+
+[node name="Platform13" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(36, 1172)
+
+[node name="Platform14" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(404, 1075)
+
+[node name="Platform15" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(768, 982)
+
+[node name="eleplatform7" parent="." instance=ExtResource("3_ss2b3")]
+position = Vector2(1123, 851)
+scale = Vector2(1.5, 1.5)
+
+[node name="Platform16" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(1252, 1123)
+
+[node name="Platform17" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(1304, 1039)
+
+[node name="Platform18" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(901, 1004)
+
+[node name="player" parent="." instance=ExtResource("1_uy87l")]
+position = Vector2(33, 2210)
+
+[node name="Camera2D2" type="Camera2D" parent="player"]
+limit_left = -200
+limit_top = 0
+limit_right = 1500
+limit_bottom = 2340
+
+[node name="HUD" parent="player" instance=ExtResource("5_22i18")]
+
+[connection signal="timeout" from="ElementIntervalTimer" to="." method="_on_element_interval_timer_timeout"]
+[connection signal="timeout" from="GravityTimer" to="." method="_on_gravity_timer_timeout"]

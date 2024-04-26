@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://cckion20g7h8k"]
+
+[ext_resource type="Texture2D" uid="uid://bseucm8moply7" path="res://Art/stage/eleplatformbase.png" id="1_gfoq2"]
+[ext_resource type="Script" path="res://Scripts/eleplatform.gd" id="1_oop7g"]
+[ext_resource type="Texture2D" uid="uid://1ouivx2eyi1m" path="res://Art/stage/eleplatformcharge.png" id="2_6dfos"]
+[ext_resource type="Texture2D" uid="uid://ct6koy1avecr5" path="res://Art/stage/eleplatformdanger1.png" id="3_hyf8d"]
+[ext_resource type="Texture2D" uid="uid://s0218y8bhewc" path="res://Art/stage/eleplatformdanger2.png" id="4_s76cj"]
+[ext_resource type="Texture2D" uid="uid://mco2gtukcbwu" path="res://Art/stage/eleplatformdanger3.png" id="5_htom6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3u3pg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sbvuh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gfoq2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6dfos")
+}],
+"loop": true,
+"name": &"charging",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hyf8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s76cj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_htom6")
+}],
+"loop": true,
+"name": &"danger",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="eleplatform" type="StaticBody2D"]
+script = ExtResource("1_oop7g")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(10, 1.16)
+shape = SubResource("RectangleShape2D_3u3pg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(10, 1)
+shape = SubResource("RectangleShape2D_3u3pg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -100.0
+offset_top = -10.0
+offset_right = 3100.0
+offset_bottom = 310.0
+scale = Vector2(0.0624534, 0.0634019)
+texture = ExtResource("1_gfoq2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.0626568, 0.0619394)
+sprite_frames = SubResource("SpriteFrames_sbvuh")
+animation = &"charging"
+
+[node name="ElectrifiedTimer" type="Timer" parent="."]
+
+[node name="ChargingTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="ElectrifiedTimer" to="." method="_on_electrified_timer_timeout"]
+[connection signal="timeout" from="ChargingTimer" to="." method="_on_charging_timer_timeout"]

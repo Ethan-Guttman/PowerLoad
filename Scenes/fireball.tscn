@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://crmd46tu7484w"]
+
+[ext_resource type="Texture2D" uid="uid://c2cwcg7km07sb" path="res://Art/stage/bigflame1.png" id="1_uxtr7"]
+[ext_resource type="Script" path="res://Scripts/fireball.gd" id="1_yrits"]
+[ext_resource type="Texture2D" uid="uid://cd0n7i56btix5" path="res://Art/stage/bigflame2.png" id="2_i3pbl"]
+[ext_resource type="Texture2D" uid="uid://celr4sa0o5fn3" path="res://Art/stage/smallflame1.png" id="3_u37ey"]
+[ext_resource type="Texture2D" uid="uid://dws2oyfptgfm0" path="res://Art/stage/smallflame2.png" id="4_wjk1x"]
+[ext_resource type="Texture2D" uid="uid://rwxsyk8lm2uq" path="res://Art/stage/smallflame3.png" id="5_85mqg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_objae"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uxtr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_i3pbl")
+}],
+"loop": true,
+"name": &"burst",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_u37ey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wjk1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_85mqg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mlrpb"]
+radius = 112.161
+
+[node name="Fireball" type="Area2D"]
+scale = Vector2(0.615, 0.615)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_yrits")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_objae")
+frame = 1
+frame_progress = 0.664135
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mlrpb")
+
+[node name="DangerTimer" type="Timer" parent="."]
+wait_time = 0.75
+one_shot = true
+
+[node name="DieTimer" type="Timer" parent="."]
+wait_time = 1.75
+one_shot = true
+
+[connection signal="timeout" from="DangerTimer" to="." method="_on_danger_timer_timeout"]
+[connection signal="timeout" from="DieTimer" to="." method="_on_die_timer_timeout"]

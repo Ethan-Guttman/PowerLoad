@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://mjvd6rcalock"]
+
+[ext_resource type="PackedScene" uid="uid://mdhmi5y3baol" path="res://Scenes/platform.tscn" id="1_tblbi"]
+[ext_resource type="PackedScene" uid="uid://clklmhahw5cf7" path="res://Scenes/player.tscn" id="1_uy87l"]
+[ext_resource type="PackedScene" uid="uid://6y4ymugn2aa2" path="res://Scenes/robot.tscn" id="2_b64hh"]
+
+[node name="Main" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.827451, 0.898039, 0.992157, 1)
+
+[node name="Player" parent="ColorRect" instance=ExtResource("1_uy87l")]
+position = Vector2(103, -94)
+
+[node name="Robot" parent="." instance=ExtResource("2_b64hh")]
+position = Vector2(187, 30)
+
+[node name="Platform" parent="." instance=ExtResource("1_tblbi")]
+position = Vector2(28, 280)

@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://clklmhahw5cf7"]
+
+[ext_resource type="Texture2D" uid="uid://dea5y3tk81eno" path="res://Art/character/character1.png" id="2_2ofna"]
+
+[sub_resource type="GDScript" id="GDScript_yc6sx"]
+script/source = "extends Area2D
+
+
+# Define the speed of the player.
+var speed = 200
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var thisScript: GDScript = get_script()
+	print('Properties of \"%s\":' % [ thisScript.resource_path ])
+	for propertyInfo in thisScript.get_script_property_list():
+		var propertyName: String = propertyInfo.name
+		var propertyValue = get(propertyName)
+		print(' %s = %s' % [ propertyName, propertyValue ])
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta):
+	# Move the player horizontally based on input.
+	var movement = Vector2()
+	if Input.is_action_pressed(\"move_right\"):
+		movement.x += 1
+	if Input.is_action_pressed(\"move_left\"):
+		movement.x -= 1
+
+	# Apply gravity.
+	movement.y += gravity * delta
+	
+	position.x += movement.x  
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gchfp"]
+size = Vector2(69, 181)
+
+[node name="Player" type="Area2D"]
+script = SubResource("GDScript_yc6sx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.5, 3)
+scale = Vector2(0.215625, 0.284375)
+texture = ExtResource("2_2ofna")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 4)
+shape = SubResource("RectangleShape2D_gchfp")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_gchfp")

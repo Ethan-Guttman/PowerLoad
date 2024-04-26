@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://be6n8rraqx27t"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_i44a1"]
+[ext_resource type="Texture2D" uid="uid://cjrmb8gihcdqr" path="res://Art/character/trenchcoatidle.png" id="2_1d8wo"]
+[ext_resource type="Texture2D" uid="uid://c7mnaadwvukgv" path="res://Art/character/trenchcoatwalk1.png" id="3_0q873"]
+[ext_resource type="Texture2D" uid="uid://0njv1k7bgyw4" path="res://Art/character/trenchcoatwalk2.png" id="4_5tnt1"]
+[ext_resource type="Texture2D" uid="uid://kly7tm1v6jt" path="res://Art/character/trenchcoatwalk3.png" id="5_pfl8q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kwbei"]
+size = Vector2(20, 18.2687)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sxkaw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1d8wo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1d8wo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0q873")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5tnt1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0q873")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1d8wo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pfl8q")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]
+
+[node name="player" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 5
+script = ExtResource("1_i44a1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.23333)
+scale = Vector2(1.29, 2.58)
+shape = SubResource("RectangleShape2D_kwbei")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.11, 0.11)
+sprite_frames = SubResource("SpriteFrames_sxkaw")
+animation = &"walk"
+frame = 5
+frame_progress = 0.130613

@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsrgd4kxpym8m"]
+
+[ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_e3sn8"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_e3sn8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 1057.0
+offset_top = 15.0
+offset_right = 1097.0
+offset_bottom = 55.0
+scale = Vector2(1.8, 1.684)
+color = Color(0.807843, 0.72549, 0.333333, 1)
+
+[node name="Element1" type="TextureRect" parent="." groups=["elements"]]
+offset_left = 1064.0
+offset_top = 20.0
+offset_right = 1384.0
+offset_bottom = 340.0
+scale = Vector2(0.18, 0.18)
+
+[node name="Element2" type="TextureRect" parent="." groups=["elements"]]
+offset_left = 981.0
+offset_top = 19.0
+offset_right = 1301.0
+offset_bottom = 339.0
+scale = Vector2(0.18, 0.18)
+
+[node name="Element3" type="TextureRect" parent="." groups=["elements"]]
+offset_left = 904.0
+offset_top = 19.0
+offset_right = 1224.0
+offset_bottom = 339.0
+scale = Vector2(0.18, 0.18)
